@@ -81,55 +81,57 @@ let library = [];
 // Create the following functions:
 // addBook(title, author): This function should accept title and author as parameters and create a new Book object with these properties. Add the new book to the library array.
 
-
-function addBook(title, author){
+function addBook(title, author) {
   newBookObj = Object.create(Book);
-  newBookObj.title =title;
-  newBookObj.author =author;
+  newBookObj.title = title;
+  newBookObj.author = author;
 
-  library.push(newBookObj)
-
-  
-}console.log(addBook('Things Fall Apart', 'Chianu Achebe'))
+  library.push(newBookObj);
+}
+console.log(addBook("Things Fall Apart", "Chianu Achebe"));
+console.log(addBook("Yellow Stone", "Chimamada"));
+displayBooks()
 // removeBook(title): This function should accept the title of a book and remove it from the library array.
-function removeBook(title){
+function removeBook(title) {
   //look fr the location of the book
-  let bookIndex =library.findIndex(item => item.title =title)
+  let bookIndex = library.findIndex((item) => (item.title = title));
 
-  if (bookIndex !== -1){
-    library.splice(bookIndex, 1)
-    console.log(`${title} has been removed`)
-  }else{
-    `${title} was not found`
+  if (bookIndex !== -1) {
+    library.splice(bookIndex, 1);
+    console.log(`${title} has been removed`);
+  } else {
+    `${title} was not found`;
   }
-}console.log(removeBook())
+}
+console.log(removeBook('Yellow Stone'));
 
 // listBooks(): This function should display a list of all books in the library, including their titles, authors, and whether they have been read.
 
-function displayBooks(){
-  console.log('This is the list of books in the Library')
+function displayBooks() {
+  console.log("This is the list of books in the Library");
   //loop tru the array
-  library.forEach((item, index)=>{
+  library.forEach((item, index) => {
     //display each book you come across
-    console.log(`Book : ${index +1}`);
+    console.log(`Book : ${index + 1}`);
     console.log(`Title: ${item.title}`);
-    console.log(`Author: ${item.author}`)
-    console.log(`isBookRead: ${item.isRead ? "Yes" :"No"} `)
-
-  })
-}displayBooks()
+    console.log(`Author: ${item.author}`);
+    console.log(`isBookRead: ${item.isRead ? "Yes" : "No"} `);
+  });
+}
+displayBooks();
 // markAsRead(title): This function should accept the title of a book and update its isRead property to true.
 
-function markAsRead(title){
-  let findTheBook =library.find(book =>book.title ===title)
+function markAsRead(title) {
+  let findTheBook = library.find((book) => book.title === title);
 
-  if(findTheBook){
-    findTheBook.isRead = true
-    console.log(`${title} has been read`)
-  }else{
-    console.log(`${title} has not been read`)
+  if (findTheBook) {
+    findTheBook.isRead = true;
+    console.log(`${title} has been read`);
+  } else {
+    console.log(`${title} has not been read`);
   }
-}console.log(markAsRead())
+}
+console.log(markAsRead("Things Fall Apart"));
 // Menu Loop:
 
 // Create a loop that displays a menu to the user with the following options:
@@ -180,3 +182,48 @@ function markAsRead(title){
 
 // Enter your choice (1-5): 5
 // Goodbye!
+
+function menubar() {
+  console.log("Welcome to the Library Management System!");
+  console.log("1. Add a book");
+  console.log("2. Remove a book");
+  console.log("3. List all books");
+  console.log("4. Mark a book as read");
+  console.log("5. Exit");
+}
+
+while (true) {
+  menubar();
+  let selection = prompt("Enter your choice (1-5)");
+
+  switch (selection) {
+    case "1":
+      let titleSelection = prompt("Enter the title of the book:");
+      let authorSelection = prompt("Enter the author of the book:");
+      addBook(titleSelection, authorSelection);
+      alert(" Book added successfully!");
+      break;
+
+    case "2":
+      let bookTitle = prompt("Enter the title of the book");
+      removeBook(bookTitle);
+      break;
+
+    case "3":
+      displayBooks;
+      break;
+
+    case "4":
+      let readBook = prompt("Enter the book you have read");
+      markAsRead(readBook);
+      break;
+
+    case "5":
+      console.log("Exit");
+      nextTime.exit();
+      break;
+
+    default:
+      console.log("Invalid choice. Please choose a number from 1 to 5.");
+  }
+}
