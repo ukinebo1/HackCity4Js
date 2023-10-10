@@ -65,8 +65,8 @@ console.log(evenOdd(19));
 // isRead (boolean): A flag indicating whether the book has been read (default to false).
 
 let Book = {
-  title: "Things Fall Apart",
-  author: "Chianu Achebe",
+  title: "",
+  author: "",
   isRead: false,
 };
 
@@ -81,12 +81,56 @@ let library = [];
 // Create the following functions:
 // addBook(title, author): This function should accept title and author as parameters and create a new Book object with these properties. Add the new book to the library array.
 
+
+function addBook(title, author){
+  newBookObj = Object.create(Book);
+  newBookObj.title =title;
+  newBookObj.author =author;
+
+  library.push(newBookObj)
+
+  
+}console.log(addBook('Things Fall Apart', 'Chianu Achebe'))
 // removeBook(title): This function should accept the title of a book and remove it from the library array.
+function removeBook(title){
+  //look fr the location of the book
+  let bookIndex =library.findIndex(item => item.title =title)
+
+  if (bookIndex !== -1){
+    library.splice(bookIndex, 1)
+    console.log(`${title} has been removed`)
+  }else{
+    `${title} was not found`
+  }
+}console.log(removeBook())
 
 // listBooks(): This function should display a list of all books in the library, including their titles, authors, and whether they have been read.
 
+function displayBooks(){
+  console.log('This is the list of books in the Library')
+  //loop tru the array
+  library.forEach((item, index)=>{
+    //display each book you come across
+    console.log(`Book : ${index +1}`);
+    console.log(`Title: ${item.title}`);
+    console.log(`Author: ${item.author}`)
+    console.log(`isBookRead: ${item.isRead ? "Yes" :"No"} `)
+
+  })
+}displayBooks()
 // markAsRead(title): This function should accept the title of a book and update its isRead property to true.
-// [10/4, 11:58 AM] +234 706 091 0625: Menu Loop:
+
+function markAsRead(title){
+  let findTheBook =library.find(book =>book.title ===title)
+
+  if(findTheBook){
+    findTheBook.isRead = true
+    console.log(`${title} has been read`)
+  }else{
+    console.log(`${title} has not been read`)
+  }
+}console.log(markAsRead())
+// Menu Loop:
 
 // Create a loop that displays a menu to the user with the following options:
 
